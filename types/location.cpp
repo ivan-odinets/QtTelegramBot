@@ -2,7 +2,7 @@
 
 using namespace Telegram;
 
-Location::Location(QJsonObject location)
+Location::Location(const QJsonObject& location)
 {
     longitude = location.value("longitude").toDouble();
     latitude = location.value("latitude").toDouble();

@@ -3,20 +3,21 @@
 
 #include <QDebug>
 #include <QJsonObject>
-#include "message.h"
 #include "callbackquery.h"
+#include "message.h"
 
 namespace Telegram {
 
 class Update
 {
 public:
+    //enum Type {Message,CallbackQuery};
     Update() {}
-    Update(QJsonObject update);
+    Update(const QJsonObject& update);
 
     quint32 id;
     Message message;
-    CallbackQuery callbackquery;
+    CallbackQuery callback;
 };
 
 inline QDebug operator<< (QDebug dbg, const Update &update)

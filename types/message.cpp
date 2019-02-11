@@ -2,7 +2,7 @@
 
 using namespace Telegram;
 
-Message::Message(QJsonObject message)
+Message::Message(const QJsonObject& message)
 {
     id = message.value("message_id").toInt();
     date = QDateTime::fromMSecsSinceEpoch(message.value("date").toInt());
@@ -30,12 +30,13 @@ Message::Message(QJsonObject message)
     }
     if (message.contains("forward_from")) {
         forwardFrom = User(message.value("forward_from").toObject());
+        qDebug() << "FORWARDED from:"<<forwardFrom;
     }
     if (message.contains("forward_date")) {
         forwardDate = QDateTime::fromMSecsSinceEpoch(message.value("forward_date").toInt());
     }
     if (message.contains("reply_to_message")) {
-        replyToMessage = new Message(message.value("reply_to_message").toObject());
+        replyToMessage = QSharedPointer<Message>(new Message(message.value("reply_to_message").toObject()));
     }
 
     // Parse payload

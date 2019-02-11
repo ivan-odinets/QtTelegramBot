@@ -11,13 +11,13 @@ class Chat
 {
 public:
     Chat() {}
-    Chat(QJsonObject chat);
+    Chat(const QJsonObject& chat);
 
     enum ChatType {
         Private, Group, Channel
     };
 
-    qint32 id;
+    qint64 id;
     ChatType type;
     QString title;
     QString username;

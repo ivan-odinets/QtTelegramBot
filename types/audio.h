@@ -11,7 +11,7 @@ class Audio
 {
 public:
     Audio() {}
-    Audio(QJsonObject audio);
+    Audio(const QJsonObject& audio);
 
     QString fileId;
     quint64 duration;

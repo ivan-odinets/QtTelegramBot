@@ -2,7 +2,7 @@
 
 using namespace Telegram;
 
-Video::Video(QJsonObject video)
+Video::Video(const QJsonObject& video)
 {
     fileId = video.value("file_id").toString();
     width = video.value("width").toInt();

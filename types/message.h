@@ -7,6 +7,7 @@
 #include <QDateTime>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QSharedPointer>
 
 #include "audio.h"
 #include "document.h"
@@ -24,8 +25,10 @@ namespace Telegram {
 class Message
 {
 public:
-    Message() {}
-    Message(QJsonObject message);
+    Message() : id(0) {}
+    Message(const QJsonObject& message);
+
+    operator bool() const { return id == 0; }
 
     /**
      * @brief Telegram message events
@@ -45,7 +48,7 @@ public:
     User from;
     User forwardFrom;
     QDateTime forwardDate;
-    Message *replyToMessage;
+    QSharedPointer<Message> replyToMessage;
 
     MessageType type;
 

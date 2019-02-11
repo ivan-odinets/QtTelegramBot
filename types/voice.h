@@ -11,7 +11,7 @@ class Voice
 {
 public:
     Voice() {}
-    Voice(QJsonObject voice);
+    Voice(const QJsonObject& voice);
 
     QString fileId;
     quint64 duration;

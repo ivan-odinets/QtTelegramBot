@@ -9,7 +9,7 @@ namespace Telegram {
 class File
 {
 public:
-    File(QString fileId, qint64 fileSize = -1,  QString filePath = QString()) :
+    File(const QString& fileId, qint64 fileSize = -1,  const QString& filePath = QString()) :
     fileId(fileId), fileSize(fileSize), filePath(filePath) {}
 
     QString fileId;

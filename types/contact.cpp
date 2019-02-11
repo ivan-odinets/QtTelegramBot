@@ -2,7 +2,7 @@
 
 using namespace Telegram;
 
-Contact::Contact(QJsonObject contact)
+Contact::Contact(const QJsonObject& contact)
 {
     phoneNumber = contact.value("phone_number").toString();
     firstname = contact.value("first_name").toString();

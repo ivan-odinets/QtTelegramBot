@@ -5,38 +5,36 @@
 #include <QString>
 #include <QJsonObject>
 
-#include "user.h"
 #include "message.h"
+#include "user.h"
 
 namespace Telegram {
 
 class CallbackQuery
 {
 public:
-    CallbackQuery() : empty(true) {}
-    CallbackQuery(QJsonObject callbackquery);
+    CallbackQuery() {}
+    CallbackQuery(const QJsonObject& callback);
 
-    QString id;
+    QString	id;
     User from;
-    Message message;
+    Message	message;
     QString inline_message_id;
     QString chat_instance;
     QString data;
     QString game_short_name;
-    bool isEmpty() const {
-        return empty;
-    }
-private:
-    bool empty;
 };
 
-inline QDebug operator<< (QDebug dbg, const CallbackQuery &callbackquery)
+inline QDebug operator<< (QDebug dbg, const CallbackQuery& callback)
 {
-    dbg.nospace() << qUtf8Printable(QString("Telegram::CallbackQuery(id=%1; From=%2")
-                                    .arg(callbackquery.id)
-                                    .arg(callbackquery.from.username));
+    dbg.nospace() << qUtf8Printable(QString("Telegram::CallbackQuery(id=%1; from.id=%2; data=%3)")
+                                    .arg(callback.id)
+                                    .arg(callback.from.id)
+                                    .arg(callback.data));
+
     return dbg.maybeSpace();
 }
+
 }
 
 #endif // CALLBACKQUERY_H

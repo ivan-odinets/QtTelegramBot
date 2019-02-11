@@ -2,7 +2,7 @@
 
 using namespace Telegram;
 
-Audio::Audio(QJsonObject audio)
+Audio::Audio(const QJsonObject& audio)
 {
     fileId = audio.value("file_id").toString();
     duration = audio.value("duration").toInt();

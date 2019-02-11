@@ -1,6 +1,7 @@
 #ifndef INLINEKEYBOARDMARKUP_H
 #define INLINEKEYBOARDMARKUP_H
 
+#include <QList>
 #include <QString>
 
 #include "genericreply.h"
@@ -16,20 +17,7 @@ public:
           callback_data(callback_data),
           switch_inline_query(switch_inline_query),
           switch_inline_query_current_chat(switch_inline_query_current_chat)
-    {
-        object = QJsonObject();
-        object.insert("text", text);
-        if (!url.isEmpty()) {
-            object.insert("url", url);
-            return;
-        }
-        if (!callback_data.isEmpty())
-            object.insert("callback_data", callback_data);
-        if (!switch_inline_query.isEmpty())
-            object.insert("switch_inline_query", switch_inline_query);
-        if (!switch_inline_query_current_chat.isEmpty())
-            object.insert("switch_inline_query_current_chat", switch_inline_query_current_chat);
-    }
+    {}
     /**
      * @text - Label text on the button
      */
@@ -57,36 +45,26 @@ public:
      */
     QString switch_inline_query_current_chat;
 
-    QJsonObject toJsonObject(){ return object; }
-private:
-    QJsonObject object;
+    QJsonObject toJsonObject() const;
 };
 
-typedef QList<InlineKeyboardButton> InlineKeyboardButtons;
+typedef QList<InlineKeyboardButton> InlineKeyboardButtonRow;
 
 class InlineKeyboardMarkup : public GenericReply
 {
 public:
-    InlineKeyboardMarkup(InlineKeyboardButtons buttons)
-        : GenericReply(false),
-          buttons(buttons) { qDebug()<<"InlineKeyboardMarkup Constructor";}
+    InlineKeyboardMarkup()
+        : GenericReply(false) {}
 
-    /**
-     * @buttons - Array of button rows, each represented by an Array of InlineKeyboardButton objects
-     */
-    InlineKeyboardButtons buttons;
+    void addButton(const InlineKeyboardButton& button);
+    void addButton(const InlineKeyboardButton& button,int row, int column);
+    void addButtonRow(const InlineKeyboardButtonRow& row)
+        { m_buttons.append(row); }
 
-    virtual QString serialize() const {
-        QJsonObject o = QJsonObject();
-        QJsonArray keyboardButtons = QJsonArray();
-        foreach (InlineKeyboardButton button, buttons) {
-            QJsonArray array; array.append(button.toJsonObject());
-            keyboardButtons.append(array);
-        }
-        o.insert("inline_keyboard", keyboardButtons);
-        qDebug()<<o;
-        return serializeJson(o);
-    }
+    virtual QString serialize() const;
+
+private:
+    QList<InlineKeyboardButtonRow> m_buttons;
 };
 
 }

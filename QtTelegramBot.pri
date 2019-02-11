@@ -17,7 +17,9 @@ SOURCES += \
     $$PWD/types/voice.cpp \
     $$PWD/types/contact.cpp \
     $$PWD/types/location.cpp \
-    $$PWD/types/callbackquery.cpp
+    $$PWD/types/callbackquery.cpp \
+    $$PWD/types/reply/inlinekeyboardmarkup.cpp \
+    $$PWD/types/chatmember.cpp
 
 HEADERS += \
     $$PWD/qttelegrambot.h \
@@ -41,7 +43,8 @@ HEADERS += \
     $$PWD/types/reply/forcereply.h \
     $$PWD/types/callbackquery.h \
     $$PWD/types/reply/inlinekeyboardmarkup.h \
-    $$PWD/types/reply/replykeyboardremove.h
+    $$PWD/types/reply/replykeyboardremove.h \
+    $$PWD/types/chatmember.h
 
 OTHER_FILES += \
     $$PWD/README.md

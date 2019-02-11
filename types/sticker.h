@@ -12,7 +12,7 @@ class Sticker
 {
 public:
     Sticker() {}
-    Sticker(QJsonObject sticker);
+    Sticker(const QJsonObject& sticker);
 
     QString fileId;
     quint16 width;

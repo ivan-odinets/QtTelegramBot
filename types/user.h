@@ -11,12 +11,13 @@ class User
 {
 public:
     User() : id(0), firstname(QString()), lastname(QString()), username(QString()) {}
-    User(QJsonObject user);
+    User(const QJsonObject& user);
 
     qint32 id;
     QString firstname;
     QString lastname;
     QString username;
+    bool is_bot;
 };
 
 inline QDebug operator<< (QDebug dbg, const User &user)

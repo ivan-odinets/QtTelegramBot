@@ -2,7 +2,7 @@
 
 using namespace Telegram;
 
-Voice::Voice(QJsonObject voice)
+Voice::Voice(const QJsonObject& voice)
 {
     fileId = voice.value("file_id").toString();
     duration = voice.value("duration").toInt();

@@ -11,7 +11,7 @@ class Location
 {
 public:
     Location() {}
-    Location(QJsonObject location);
+    Location(const QJsonObject& location);
 
     float longitude;
     float latitude;

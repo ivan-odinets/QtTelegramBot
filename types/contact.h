@@ -11,7 +11,7 @@ class Contact
 {
 public:
     Contact() {}
-    Contact(QJsonObject contact);
+    Contact(const QJsonObject& contact);
 
     QString phoneNumber;
     QString firstname;

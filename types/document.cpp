@@ -2,7 +2,7 @@
 
 using namespace Telegram;
 
-Document::Document(QJsonObject document)
+Document::Document(const QJsonObject& document)
 {
     fileId = document.value("file_id").toString();
     thumb = PhotoSize(document.value("thumb").toObject());

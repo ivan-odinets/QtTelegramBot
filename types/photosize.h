@@ -11,7 +11,7 @@ class PhotoSize
 {
 public:
     PhotoSize() {}
-    PhotoSize(QJsonObject photoSize);
+    PhotoSize(const QJsonObject& photoSize);
 
     QString fileId;
     quint16 width;

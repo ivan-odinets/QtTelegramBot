@@ -11,12 +11,12 @@ mkdir lib && cd lib
 
 Clone the repo to your projects source directory:
 ```bash
-git clone https://github.com/iMoritz/QtTelegramBot.git
+git clone https://github.com/ivan-odinets/QtTelegramBot.git
 ```
 
 Alternatively you can add QtTelegramBot as a git submodule to always stay up-to-date:
 ```bash
-git submodule add https://github.com/iMoritz/QtTelegramBot.git
+git submodule add https://github.com/ivan-odinets/QtTelegramBot.git
 ```
 
 In your project file (*project*.pro) add this include:

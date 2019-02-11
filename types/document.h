@@ -12,7 +12,7 @@ class Document
 {
 public:
     Document() {}
-    Document(QJsonObject document);
+    Document(const QJsonObject& document);
 
     QString fileId;
     PhotoSize thumb;

@@ -2,7 +2,7 @@
 
 using namespace Telegram;
 
-PhotoSize::PhotoSize(QJsonObject photoSize)
+PhotoSize::PhotoSize(const QJsonObject& photoSize)
 {
     fileId = photoSize.value("file_id").toString();
     width = photoSize.value("width").toInt();

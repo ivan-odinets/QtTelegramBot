@@ -11,7 +11,7 @@ class Video
 {
 public:
     Video() {}
-    Video(QJsonObject video);
+    Video(const QJsonObject& video);
 
     QString fileId;
     quint16 width;

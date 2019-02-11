@@ -16,7 +16,7 @@ Networking::~Networking()
     delete m_nam;
 }
 
-QByteArray Networking::request(QString endpoint, ParameterList params, Networking::Method method)
+QByteArray Networking::request(const QString& endpoint, const ParameterList& params, Networking::Method method)
 {
     if (endpoint.isEmpty()) {
         qWarning("Cannot do request without endpoint");
@@ -31,14 +31,9 @@ QByteArray Networking::request(QString endpoint, ParameterList params, Networkin
     QUrl url = buildUrl(endpoint);
     req.setUrl(url);
 
-#ifdef DEBUG
-    qDebug("HTTP request: %s", qUtf8Printable(req.url().toString()));
-#endif
-
     QEventLoop loop;
 
     QNetworkReply *reply;
-
     if (method == GET) {
         url.setQuery(parameterListToString(params));
         req.setUrl(url);
@@ -77,7 +72,7 @@ QByteArray Networking::request(QString endpoint, ParameterList params, Networkin
     return ret;
 }
 
-QUrl Networking::buildUrl(QString endpoint)
+QUrl Networking::buildUrl(const QString& endpoint)
 {
     QUrl url = QUrl();
     url.setScheme("https");
@@ -87,12 +82,12 @@ QUrl Networking::buildUrl(QString endpoint)
     return url;
 }
 
-QByteArray Networking::parameterListToString(ParameterList list)
+QByteArray Networking::parameterListToString(const ParameterList& list)
 {
     QByteArray ret;
 
-    ParameterList::iterator i = list.begin();
-    while (i != list.end()) {
+    auto i = list.constBegin();
+    while (i != list.constEnd()) {
         ret.append(i.key() + "=" + i.value().value + "&");
         ++i;
     }
